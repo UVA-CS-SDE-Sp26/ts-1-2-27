@@ -1,0 +1,21 @@
+Owen Kearney
+uak4ux
+
+Summary:
+This part of the program handles all the direct access of files.
+It will only look in the data folder in the root project directory.
+Given no arguments, it will send an array of all file names to programcontrol.
+Given 1 or 2 argument(s), it will locate a file based on the given number.
+Then it send the contents of the file to cipher to be deciphered.
+
+Specific Methods
++files(): String[], returns an array with all files in order that are in the data folder.
++locateFile(int number): String, returns the contents of a given file based on the number, returns something else/ends if file does not exist
+Basic Code Design:
+
+
+
+
+
+
+
