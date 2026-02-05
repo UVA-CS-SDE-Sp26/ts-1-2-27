@@ -8,7 +8,7 @@ public class tests {
     @Mock
     Class cipher;
 
-    @BeforeALl
+    @BeforeAll
     static void Setup(){
         x = new Class x();
     }
