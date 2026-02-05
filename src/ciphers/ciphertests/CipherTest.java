@@ -1,7 +1,17 @@
 import org.junit.Test;
-import static org.junit.Assert.assertEquals; // You need this for the assertion to work
+import static org.junit.Assert.assertEquals; // You need this for the assertion to work\
+import static org.Mockito.when;
 
 public class tests {
+
+    static class x;
+    @Mock
+    Class cipher;
+
+    @BeforeALl
+    static void Setup(){
+        x = new Class x();
+    }
 
     @Test
     public void testDecipherCorrectly() {
