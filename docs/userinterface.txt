@@ -1,0 +1,77 @@
+Program Name:
+-------------
+TopSecret
+
+Description:
+------------
+TopSecret is a command-line utility for agents to view files and documents,
+showing the file list, the contents of an indicated file, or an error message
+depending on the arguments passed in.
+
+
+Command Format:
+---------------
+java topsecret [option]
+
+If no option is provided, the program lists the numbered files available to display.
+If a numeric option is provided, the program displays the contents of the
+corresponding file. If a second parameter is given, the decipherer uses the
+specified alternate key to use when deciphering.
+
+Command-Line Options:
+---------------------
+(none)
+    Lists all available files that can be displayed. Each file is shown with
+    a two-digit numeric identifier, i.e. 01, 02, 03, etc.
+
+<number>
+    Displays the contents of the corresponding file using the default cipher.
+
+    The number must match one of the listed file identifiers,
+    with the leading 0 if necessary.
+
+<number> + <cipher>
+    Displays the contents of the corresponding file using the specified cipher.
+
+    The number must match one of the listed file identifiers,
+    and the cipher must be a valid cipher.
+
+Run Examples:
+---------
+1. Run the program with no arguments:
+
+   java topsecret
+
+   Output:
+   01 filea.txt
+   02 fileb.txt
+   03 filec.txt
+
+2. Display the contents of a specific file:
+
+   java topsecret 01
+
+   Output:
+   (contents of filea.txt are displayed on the screen)
+
+3. Display the contents of a file using a specific cipher:
+
+    java topsecret 01 cipher01.txt
+
+   Output:
+   (contents of filea.txt using cipher01 are displayed on the screen)
+
+Error Handling:
+---------------
+- If an invalid number is provided, an error message is displayed.
+- If something other than a number is provided, an error message is displayed.
+- If the file cannot be found or accessed, an error message is displayed.
+- If the second parameter is not a valid cipher, an error message is displayed.
+- After displaying an error message, the program exits.
+
+Program Termination:
+--------------------
+The program exits after:
+- Listing available files
+- Displaying the contents of a selected file
+- Displaying an error message
