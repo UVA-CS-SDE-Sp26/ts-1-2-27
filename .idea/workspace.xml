@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="First CipherTest added.">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+    <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="fixed dependiences locally">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ciphers/ciphertests/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ciphers/ciphertests/CipherTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,6 +110,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.ts-1-2-27 [buildDependents].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.ts-1-2-27 [build].executor&quot;: &quot;Run&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
@@ -138,7 +135,29 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.ts-1-2-27 [buildDependents]">
+    <configuration name="ts-1-2-27 [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildDependents" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="ts-1-2-27 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -163,6 +182,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ts-1-2-27 [buildDependents]" />
         <item itemvalue="Gradle.ts-1-2-27 [build]" />
       </list>
     </recent_temporary>
@@ -187,6 +207,9 @@
       <workItem from="1770147901132" duration="2513000" />
       <workItem from="1770254492457" duration="1102000" />
       <workItem from="1770255874546" duration="557000" />
+      <workItem from="1770320938150" duration="312000" />
+      <workItem from="1770612520946" duration="593000" />
+      <workItem from="1770662858940" duration="26000" />
     </task>
     <task id="LOCAL-00001" summary="First CipherTest added.">
       <option name="closed" value="true" />
@@ -212,7 +235,23 @@
       <option name="project" value="LOCAL" />
       <updated>1770254980373</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed dependiences locally">
+      <option name="closed" value="true" />
+      <created>1770321095279</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1770321095279</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed dependiences locally">
+      <option name="closed" value="true" />
+      <created>1770321118778</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1770321118778</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +259,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First CipherTest added." />
-    <option name="LAST_COMMIT_MESSAGE" value="First CipherTest added." />
+    <MESSAGE value="fixed dependiences locally" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed dependiences locally" />
   </component>
 </project>
