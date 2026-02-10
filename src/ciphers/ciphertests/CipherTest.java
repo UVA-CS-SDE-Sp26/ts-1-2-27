@@ -4,7 +4,7 @@ import static org.Mockito.when;
 
 public class tests {
 
-    static class x;
+    static class Cipher;
     @Mock
     Class cipher;
 
