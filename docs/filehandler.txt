@@ -10,19 +10,19 @@ Then it send the contents of the file to cipher to be deciphered.
 
 Specific Methods
 +files(): String[], returns an array with all files in order that are in the data folder.
-+locateFile(String fileNumber): String, returns the contents of a given file based on the number, returns something else/ends if file does not exist
++getFile(String fileNumber): String, returns the contents of a given file based on the number, returns something else/ends if file does not exist
 
 Run examples
 files:
     no files in data - returns an empty array
     1 file in data - returns {file1_name}
     5 files in data - returns {file1_name, file2_name, file3_name, file4_name, file5_name} in alphabetical (normal) order
-locateFile
-    locateFile("01") but no files in data - throw an error (no files in data)
-    locateFile("02") but only 1 file in data - throw an error (file not found)
-    locateFile("00") - throw an error (either file not found or invalid file number)
-    locateFile("01") 1 file in data - returns a string of the contents of file1
-    locateFile("03") 5 files in data - returns the contents of the third file in data
+getFile
+    getFile("01") but no files in data - throw an error (no files in data)
+    getFile("02") but only 1 file in data - throw an error (file not found)
+    getFile("00") - throw an error (either file not found or invalid file number)
+    getFile("01") 1 file in data - returns a string of the contents of file1
+    getFile("03") 5 files in data - returns the contents of the third file in data
 
 
 Basic Code Design:
