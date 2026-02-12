@@ -1,23 +1,22 @@
 Owen Kearney
 uak4ux
 
+Filehandler(File folder)
+
 Summary:
 This part of the program handles all the direct access of files.
-It will only look in the data folder in the root project directory.
-Given no arguments, it will send an array of all file names to programcontrol.
-Given 1 or 2 argument(s), it will locate a file based on the given number.
-Then it send the contents of the file to cipher to be deciphered.
+It will look at the folder given to it during the object creation.
 
-Specific Methods
+Specific Methods:
 +files(): String[], returns an array with all files in order that are in the data folder.
 +getFile(String fileNumber): String, returns the contents of a given file based on the number, returns something else/ends if file does not exist
 
-Run examples
+Run examples:
 files:
     no files in data - returns an empty array
     1 file in data - returns {file1_name}
     5 files in data - returns {file1_name, file2_name, file3_name, file4_name, file5_name} in alphabetical (normal) order
-getFile
+getFile:
     getFile("01") but no files in data - throw an error (no files in data)
     getFile("02") but only 1 file in data - throw an error (file not found)
     getFile("00") - throw an error (either file not found or invalid file number)
@@ -25,7 +24,6 @@ getFile
     getFile("03") 5 files in data - returns the contents of the third file in data
 
 
-Basic Code Design:
 
 
 
