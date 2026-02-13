@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -12,14 +11,14 @@ public class Cipher {
                 File file = new File(filename);
 
                 // --- SMART PATH RESOLUTION ---
-                // 1. Try the exact path first (This makes your Unit Tests pass!)
+                // 1. Try the exact path first
                 // 2. If it doesn't exist, automatically check the "ciphers/" folder
                 if (!file.exists()) {
                         File fallback = new File("ciphers/" + filename);
                         if (fallback.exists()) {
                                 file = fallback;
                         } else {
-                                // One more fallback based on folder structure
+                                // This matches your screenshot structure: src/main/java/ciphers/key.txt
                                 File srcFallback = new File("src/main/java/ciphers/" + filename);
                                 if (srcFallback.exists()) {
                                         file = srcFallback;
@@ -51,7 +50,6 @@ public class Cipher {
                         // 4. Validate matching lengths
                         if (line1.length() == line2.length()) {
                                 for (int i = 0; i < line1.length(); i++) {
-                                        // Map Cipher Match (line 2) -> Actual Letter (line 1) so we can decipher
                                         map.put(line2.charAt(i), line1.charAt(i));
                                 }
                         } else {
@@ -70,11 +68,9 @@ public class Cipher {
                 for (int i = 0; i < text.length(); i++) {
                         char originalChar = text.charAt(i);
 
-                        // If the character is in our cipher key, replace it.
                         if (map.containsKey(originalChar)) {
                                 builder.append(map.get(originalChar));
                         } else {
-                                // Keep spaces, punctuation, or unmapped characters as-is
                                 builder.append(originalChar);
                         }
                 }
