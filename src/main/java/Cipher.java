@@ -18,7 +18,7 @@ public class Cipher {
                         if (fallback.exists()) {
                                 file = fallback;
                         } else {
-                                // This matches your screenshot structure: src/main/java/ciphers/key.txt
+                               
                                 File srcFallback = new File("src/main/java/ciphers/" + filename);
                                 if (srcFallback.exists()) {
                                         file = srcFallback;
