@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+
 public class Userinterface {
 
     private static final String DEFAULT_CIPHER = "key.txt";
@@ -10,34 +14,38 @@ public class Userinterface {
         } else if (args.length == 2) {
             displayFile(args[0], args[1]);
         } else {
-            showError("Too Many Arguments");
+            System.out.println("Error: Invalid Number of Args!");
         }
     }
 
     private static void showFileList() {
-        System.out.println("Output:");
-        // Done by Programcontrol
+        System.out.println("Available Files:");
+
+        Filehandler fh = new Filehandler(new File("data"));
+        String[] files = fh.files();
+        for(int i = 0; i < files.length; i++) {
+            String n = i+1 + "";
+            if(i < 10) {
+                n = "0" + n;
+            }
+            System.out.println(n + " " + files[i]);
+        }
     }
 
     private static void displayFile(String fileNumber, String cipher) {
-        if (!isValidFileNumber(fileNumber)) {
-            showError("Invalid file number: " + fileNumber);
-            return;
+        Filehandler fh = new Filehandler(new File("data"));
+        Cipher c = new Cipher();
+
+        System.out.println("Displaying file " + fileNumber + " with " + cipher);
+
+        try {
+            HashMap<Character, Character> key =  c.loadKey(cipher);
+            System.out.println(c.decipher(fh.getFile(fileNumber), key));
+        } catch (FileNotFoundException e) {
+            System.out.println("Invalid Cipher!");
+        } catch (Exception e) {
+            System.out.println("Invalid File Number!");
         }
-
-        // Display file contents using Filehandler
-
-        System.out.println("Displaying file " + fileNumber);
-    }
-
-
-    private static boolean isValidFileNumber(String fileNumber) {
-        return fileNumber.matches("\\d{2}"); // placeholder, should probably be managed by Filehandler
-    }
-
-
-    private static void showError(String message) {
-        System.out.println("Error: " + message);
     }
 }
 

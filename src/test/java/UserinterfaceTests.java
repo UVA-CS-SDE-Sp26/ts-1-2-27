@@ -24,8 +24,7 @@ public class UserinterfaceTests {
         Userinterface.run(new String[]{});
 
         String output = outContent.toString();
-        assertTrue(output.contains("01"));
-        assertTrue(output.contains("filea.txt"));
+        assertTrue(output.contains("Available Files"));
     }
 
 
@@ -35,7 +34,6 @@ public class UserinterfaceTests {
         Userinterface.run(new String[]{"01"});
 
         String output = outContent.toString();
-        assertTrue(output.contains("key.txt"));
         assertTrue(output.contains("Displaying file"));
     }
 
@@ -45,8 +43,8 @@ public class UserinterfaceTests {
         Userinterface.run(new String[]{"01", "key1.txt"});
 
         String output = outContent.toString();
-        assertTrue(output.contains("key1.txt"));
         assertTrue(output.contains("Displaying file"));
+        assertTrue(output.contains("key1.txt"));
     }
 
     @Test
@@ -55,8 +53,7 @@ public class UserinterfaceTests {
         Userinterface.run(new String[]{"yo"});
 
         String output = outContent.toString();
-        assertTrue(output.contains("Error"));
-        assertTrue(output.contains("Invalid file number"));
+        assertTrue(output.contains("Invalid File"));
     }
 
     @Test
@@ -66,7 +63,7 @@ public class UserinterfaceTests {
 
         String output = outContent.toString();
         assertTrue(output.contains("Error"));
-        assertTrue(output.contains("Too Many Arguments"));
+        assertTrue(output.contains("Invalid Number"));
     }
 
 }

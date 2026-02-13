@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path).">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Cipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Cipher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TopSecret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TopSecret.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Userinterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Userinterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CipherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ProgramControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProgramControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UserinterfaceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UserinterfaceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +116,9 @@
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.Build ts-1-2-27.executor": "Run",
     "Gradle.CipherTest.executor": "Run",
+    "Gradle.UserinterfaceTests.executor": "Run",
+    "Gradle.UserinterfaceTests.testInvalidFileNumber.executor": "Run",
+    "Gradle.ts-1-2-27 [:TopSecret.main()].executor": "Run",
     "Gradle.ts-1-2-27 [buildDependents].executor": "Run",
     "Gradle.ts-1-2-27 [build].executor": "Run",
     "Repository.Attach.Annotations": "false",
@@ -135,34 +144,98 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ethan\Downloads\ts-1-2-27" />
+      <recent name="C:\Users\ethan\Downloads\ts-1-2-27\src\main\java" />
       <recent name="$PROJECT_DIR$/src/main/java/ciphers" />
       <recent name="$PROJECT_DIR$/src/test/java" />
       <recent name="$PROJECT_DIR$/src/main/java" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ts-1-2-27 [build]">
-    <configuration name="ts-1-2-27 [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.UserinterfaceTests">
+    <configuration name="TopSecret" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TopSecret" />
+      <module name="TopSecret.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CipherTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="buildDependents" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;CipherTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserinterfaceTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;UserinterfaceTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserinterfaceTests.testInvalidFileNumber" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;UserinterfaceTests.testInvalidFileNumber&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <GradleProfilingDisabled>false</GradleProfilingDisabled>
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
@@ -194,8 +267,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.UserinterfaceTests" />
+        <item itemvalue="Gradle.CipherTest" />
+        <item itemvalue="Application.TopSecret" />
+        <item itemvalue="Gradle.UserinterfaceTests.testInvalidFileNumber" />
         <item itemvalue="Gradle.ts-1-2-27 [build]" />
-        <item itemvalue="Gradle.ts-1-2-27 [buildDependents]" />
       </list>
     </recent_temporary>
   </component>
