@@ -13,7 +13,6 @@ public class ProgramControl {
 
     public void execute(String[] args) {
 
-        // No arguments → list files
         if (args.length == 0) {
             String[] files = filehandler.files();
 
@@ -26,10 +25,8 @@ public class ProgramControl {
         try {
             String fileNumber = args[0];
 
-            // Get file contents from Filehandler
             String content = filehandler.getFile(fileNumber);
 
-            // If a cipher key is provided
             if (args.length == 2) {
                 String keyFile = args[1];
                 HashMap<Character, Character> map = cipher.loadKey(keyFile);
