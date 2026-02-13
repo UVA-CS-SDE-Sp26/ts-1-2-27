@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="merged branches" />
+    <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path).">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ciphers/Cipher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ciphers/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ciphers/ciphertests/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ciphers/ciphertests/CipherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ciphers/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ciphers/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ciphers/ciphertests/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ciphers/ciphertests/CipherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TopSecret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TopSecret.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +66,11 @@
         </map>
       </branch-storage>
     </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -70,12 +85,15 @@
     &quot;accountId&quot;: &quot;8cde604b-2e23-466b-b021-b4936a5f111b&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/ciphers/Cipher.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -85,35 +103,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.ts-1-2-27 [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ts-1-2-27 [build].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.445977&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build ts-1-2-27.executor": "Run",
+    "Gradle.ts-1-2-27 [buildDependents].executor": "Run",
+    "Gradle.ts-1-2-27 [build].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.445977",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ts-1-2-27 [buildDependents]">
+  <component name="RunManager" selected="Gradle.ts-1-2-27 [build]">
     <configuration name="ts-1-2-27 [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -160,8 +180,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ts-1-2-27 [buildDependents]" />
         <item itemvalue="Gradle.ts-1-2-27 [build]" />
+        <item itemvalue="Gradle.ts-1-2-27 [buildDependents]" />
       </list>
     </recent_temporary>
   </component>
@@ -188,6 +208,8 @@
       <workItem from="1770320938150" duration="312000" />
       <workItem from="1770612520946" duration="593000" />
       <workItem from="1770662858940" duration="26000" />
+      <workItem from="1770737829482" duration="9990000" />
+      <workItem from="1770947187404" duration="867000" />
     </task>
     <task id="LOCAL-00001" summary="First CipherTest added.">
       <option name="closed" value="true" />
@@ -229,7 +251,23 @@
       <option name="project" value="LOCAL" />
       <updated>1770321118778</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed dependiences locally">
+      <option name="closed" value="true" />
+      <created>1770737848465</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1770737848465</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path).">
+      <option name="closed" value="true" />
+      <created>1770749258108</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1770749258108</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +287,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First CipherTest added." />
     <MESSAGE value="fixed dependiences locally" />
-    <MESSAGE value="merged branches" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged branches" />
+    <MESSAGE value="merge branches" />
+    <MESSAGE value="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path)." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path)." />
   </component>
 </project>
