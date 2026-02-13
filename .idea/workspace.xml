@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path).">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ProgramControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProgramControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/carnivore.cip" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/carnivore.cip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/carnivore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/carnivore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cointelpro.cip" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/cointelpro.cip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cointelpro.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/cointelpro.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Userinterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Userinterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CipherTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,44 +112,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.Build ts-1-2-27.executor": "Run",
-    "Gradle.CipherTest.executor": "Run",
-    "Gradle.ProgramControlTest.executor": "Run",
-    "Gradle.UserinterfaceTests.executor": "Run",
-    "Gradle.UserinterfaceTests.testInvalidFileNumber.executor": "Run",
-    "Gradle.ts-1-2-27 [:TopSecret.main()].executor": "Run",
-    "Gradle.ts-1-2-27 [buildDependents].executor": "Run",
-    "Gradle.ts-1-2-27 [build].executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.445977",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.Build ts-1-2-27.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CipherTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ProgramControlTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.UserinterfaceTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.UserinterfaceTests.testInvalidFileNumber.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ts-1-2-27 [:TopSecret.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ts-1-2-27 [buildDependents].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ts-1-2-27 [build].executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.445977&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ethan\Downloads\ts-1-2-27" />

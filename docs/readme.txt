@@ -1,8 +1,9 @@
 TopSecret documentation starter file
 
+data folder and ciphers folder are located in the /src/main/java folder
+
+
 Basic flow of project
-this is very not set in stone so feel free to change it
-also who does what or specifics may be wrong so please double check
     if topsecret ran with no arguments:
         filehandler returns an array of filenames in the data folder, which is in the root project directory
         programcontrol/userinterface takes array and prints readable format with numbering
