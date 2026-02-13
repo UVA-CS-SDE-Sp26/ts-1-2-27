@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path).">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ciphers/Cipher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ciphers/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ciphers/ciphertests/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ciphers/ciphertests/CipherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ciphers/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ciphers/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ciphers/ciphertests/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ciphers/ciphertests/CipherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TopSecret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TopSecret.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/CipherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ciphers/key.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ciphers/Cipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Cipher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ciphers/ciphertests/CipherTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ProgramControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProgramControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +34,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="TopSecret" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="TopSecret" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="TopSecret" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -107,13 +115,14 @@
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.Build ts-1-2-27.executor": "Run",
+    "Gradle.CipherTest.executor": "Run",
     "Gradle.ts-1-2-27 [buildDependents].executor": "Run",
     "Gradle.ts-1-2-27 [build].executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -129,6 +138,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/ciphers" />
+      <recent name="$PROJECT_DIR$/src/test/java" />
       <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
@@ -210,6 +221,7 @@
       <workItem from="1770662858940" duration="26000" />
       <workItem from="1770737829482" duration="9990000" />
       <workItem from="1770947187404" duration="867000" />
+      <workItem from="1770988262969" duration="1597000" />
     </task>
     <task id="LOCAL-00001" summary="First CipherTest added.">
       <option name="closed" value="true" />
