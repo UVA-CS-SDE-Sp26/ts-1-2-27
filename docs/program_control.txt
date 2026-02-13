@@ -1,9 +1,7 @@
-# Program Control Documentation
-
-### Overview
+Program Control Documentation
 The Program Control component serves as the central coordinator between the User Interface (Team Member A) and the File Handler (Team Member B), and optionally the Cipher component (Team Member D for 4-member teams). This component orchestrates the flow of data and control logic for the application.
 
-### Responsibilities
+Responsibilities
 1. Coordinate between UI and File Handler
    - Receive user commands from the User Interface component
    - Request file operations from the File Handler component
@@ -26,19 +24,19 @@ The Program Control component serves as the central coordinator between the User
    - Handle decryption errors from Cipher component
    - Ensure graceful error messages are returned to User Interface
 
-### Component Interfaces
+Component Interfaces
 
-#### Input from User Interface (Team Member A)
+Input from User Interface 
 - No arguments: Request to list all available files
 - File number argument: Request to display specific file content
 - Optional cipher key argument: Alternate decryption key
 
-#### Output to User Interface (Team Member A)
+Output to User Interface 
 - File list: Formatted string with numbered files (e.g., "01 filea.txt\n02 fileb.txt")
 - File content: Decrypted readable text
 - Error messages: Clear error descriptions for user
 
-#### Interaction with File Handler (Team Member B)
+Interaction with File Handler 
 - Request: getFileList()
   - Returns: List<String> of available filenames
   
@@ -46,92 +44,89 @@ The Program Control component serves as the central coordinator between the User
   - Returns: String containing file content (encrypted or plain text)
   - Throws: FileNotFoundException if file doesn't exist
 
-#### Interaction with Cipher Component (Team Member D) - For 4-member teams
+Interaction with Cipher Component 
 - Request: decrypt(String encryptedContent, String keyPath)
   - Returns: String containing decrypted content
   - Throws: CipherException if decryption fails or key is invalid
 
-### Design Decisions
+Class Structure
 
-#### Class Structure
-```
 ProgramController
-??? getAvailableFiles(): String
-??? getFileContentByNumber(int fileNumber): String
-??? getFileContentByNumber(int fileNumber, String alternateKey): String
-??? mapNumberToFilename(int number, List<String> files): String
-```
+getAvailableFiles(): String
+getFileContentByNumber(int fileNumber): String
+getFileContentByNumber(int fileNumber, String alternateKey): String
+mapNumberToFilename(int number, List<String> files): String
 
-#### Key Design Principles
+Key Design Principles
 1. Single Responsibility: ProgramController only coordinates; it doesn't directly read files or perform encryption/decryption
 2. Dependency Injection: FileHandler and Cipher components will be injected to allow for easier testing
 3. Error Propagation: Errors from lower components are caught, wrapped with user-friendly messages, and propagated to UI
 4. Stateless Operation: Each method call is independent; no session state is maintained
 
-#### File Number Mapping Logic
+File Number Mapping Logic
 - Files are numbered starting from 01
 - Numbers are zero-padded (01, 02, ..., 09, 10, ...)
 - The order of files matches the order returned by FileHandler.getFileList()
 - Invalid numbers (out of range, non-numeric) result in error messages
 
-### Flow Diagrams
+Flow Diagrams
 
-#### Scenario 1: List Files (No Arguments)
+Scenario 1: List Files (No Arguments)
 ```
-User Interface ? ProgramController.getAvailableFiles()
-                 ?
-                 ProgramController ? FileHandler.getFileList()
-                 ?
+User Interface  ProgramController.getAvailableFiles()
+            
+                 ProgramController  FileHandler.getFileList()
+                 
                  FileHandler returns List<String>
-                 ?
+                 
                  ProgramController formats with numbers
-                 ?
-User Interface ? Returns formatted string
+                 
+User Interface  Returns formatted string
 ```
 
-#### Scenario 2: Display File Content (With File Number)
+ Scenario 2: Display File Content (With File Number)
 ```
-User Interface ? ProgramController.getFileContentByNumber(fileNum)
-                 ?
-                 ProgramController ? FileHandler.getFileList()
-                 ?
+User Interface  ProgramController.getFileContentByNumber(fileNum)
+                 
+                 ProgramController  FileHandler.getFileList()
+                 
                  Map file number to filename
-                 ?
-                 ProgramController ? FileHandler.getFileContent(filename)
-                 ?
-                 [If 4-member team] ProgramController ? Cipher.decrypt(content)
-                 ?
-User Interface ? Returns readable content
+                 
+                 ProgramController  FileHandler.getFileContent(filename)
+                 
+                 [If 4-member team] ProgramController  Cipher.decrypt(content)
+                 
+User Interface  Returns readable content
 ```
 
-#### Scenario 3: Error Handling
+ Scenario 3: Error Handling
 ```
-User Interface ? ProgramController.getFileContentByNumber(99)
-                 ?
-                 ProgramController ? FileHandler.getFileList()
-                 ?
+User Interface  ProgramController.getFileContentByNumber(99)
+                 
+                 ProgramController  FileHandler.getFileList()
+                 
                  Number out of range detected
-                 ?
-User Interface ? Returns error message: "Error: File number 99 not found"
+                 
+User Interface  Returns error message: "Error: File number 99 not found"
 ```
 
-### Error Handling Strategy
+ Error Handling Strategy
 
-#### Error Types and Messages
+ Error Types and Messages
 1. Invalid File Number: "Error: Invalid file number. Please use a number from the available list."
 2. File Not Found: "Error: File not found or cannot be accessed."
 3. Decryption Failed: "Error: Unable to decrypt file. Key may be invalid."
 4. Empty File List: "No files available in the data directory."
 
-#### Exception Handling Approach
+ Exception Handling Approach
 - Catch specific exceptions from FileHandler and Cipher components
 - Transform technical exceptions into user-friendly messages
 - Log technical details for debugging (if logging is implemented)
 - Always ensure program exits gracefully with appropriate error message
 
-### Testing Strategy (See test documentation for details)
+ Testing Strategy (See test documentation for details)
 
-#### Unit Test Categories
+ Unit Test Categories
 1. File Listing Tests
    - Test with multiple files
    - Test with no files
@@ -153,29 +148,30 @@ User Interface ? Returns error message: "Error: File number 99 not found"
    - Test full flow from UI request to result
    - Test coordination between components
 
-### Dependencies
+ Dependencies
 
-#### Required Components
+ Required Components
 - FileHandler (Team Member B): Must provide getFileList() and getFileContent() methods
 - Cipher (Team Member D, 4-member teams): Must provide decrypt() method
 
-#### External Libraries
+ External Libraries
 - JUnit 5 for unit testing
 - Mockito for mocking dependencies during testing
 
-### Implementation Notes
+ Implementation Notes
 
-#### Collaboration Points
+ Collaboration Points
 - With Team Member A (UI): Define exact method signatures for ProgramController public interface
 - With Team Member B (FileHandler): Agree on exception types and return formats
 - With Team Member D (Cipher): Agree on decryption interface and error handling
 
-#### Design Patterns Used
+ Design Patterns Used
 - Facade Pattern: ProgramController acts as a facade, simplifying the interface to File Handler and Cipher components
 - Dependency Injection: For testability and loose coupling
 
 ---
-Document Version: 1.0
+Document Version: 1.2
 Author: Selim Ulgen
-Date: 2/10
+Date: 2/13
+
 
