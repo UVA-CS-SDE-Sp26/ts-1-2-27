@@ -1,77 +1,121 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProgramControllerTest {
-    
-    private static ProgramController controller;
-    
-    @BeforeAll
-    static void setup() {
-        controller = new ProgramController();
-    }
-    
-    // File Listing Tests
-    
+class ProgramControllerTest {
+
     @Test
-    @DisplayName("Should list multiple files with numbering")
-    void testListFiles() {
-        // Test that getAvailableFiles() returns formatted list
-        String result = controller.getAvailableFiles();
-        assertNotNull(result);
+    @DisplayName("execute with no arguments should list numbered files")
+    void testListFiles(@TempDir Path tempDir) throws Exception {
+
+        Files.createFile(tempDir.resolve("file1.txt"));
+        Files.createFile(tempDir.resolve("file2.txt"));
+
+        Filehandler f = new Filehandler(tempDir.toFile());
+        ProgramControl control = new ProgramControl(f);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        control.execute(new String[]{});
+
+        String output = out.toString();
+
+        assertTrue(output.contains("01 file1.txt"));
+        assertTrue(output.contains("02 file2.txt"));
     }
-    
+
     @Test
-    @DisplayName("Should handle no files available")
-    void testNoFiles() {
-        // Test empty file list returns appropriate message
+    @DisplayName("execute with valid file number should display file contents")
+    void testValidFile(@TempDir Path tempDir) throws Exception {
+
+        Path file = tempDir.resolve("file1.txt");
+        Files.writeString(file, "hello world");
+
+        Filehandler f = new Filehandler(tempDir.toFile());
+        ProgramControl control = new ProgramControl(f);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        control.execute(new String[]{"01"});
+
+        assertTrue(out.toString().contains("hello world"));
     }
-    
+
     @Test
-    @DisplayName("Should format numbers correctly for 10+ files")
-    void testDoubleDigitNumbers() {
-        // Test that file 10 shows as "10" not "010"
+    @DisplayName("execute with invalid file number should display error")
+    void testInvalidFileNumber(@TempDir Path tempDir) {
+
+        Filehandler f = new Filehandler(tempDir.toFile());
+        ProgramControl control = new ProgramControl(f);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        control.execute(new String[]{"01"});
+
+        assertTrue(out.toString().contains("Invalid file number"));
     }
-    
-    // File Content Tests
-    
+
     @Test
-    @DisplayName("Should retrieve file content by number")
-    void testGetFileContent() {
-        // Test that getFileContentByNumber(1) returns content
-        String content = controller.getFileContentByNumber(1);
-        assertNotNull(content);
+    @DisplayName("execute with non-numeric argument should display number error")
+    void testNonNumericArgument(@TempDir Path tempDir) {
+
+        Filehandler f = new Filehandler(tempDir.toFile());
+        ProgramControl control = new ProgramControl(f);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        control.execute(new String[]{"abc"});
+
+        assertTrue(out.toString().contains("Argument must be a number"));
     }
-    
+
     @Test
-    @DisplayName("Should preserve multiline content")
-    void testMultilineContent() {
-        // Test that newlines are preserved
+    @DisplayName("execute with cipher key should decipher file contents")
+    void testCipherApplied(@TempDir Path tempDir) throws Exception {
+
+        Path file = tempDir.resolve("file1.txt");
+        Files.writeString(file, "XYZ");
+
+        Path key = tempDir.resolve("key.txt");
+        Files.writeString(key, "ABC\nXYZ");
+
+        Filehandler f = new Filehandler(tempDir.toFile());
+        ProgramControl control = new ProgramControl(f);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        control.execute(new String[]{"01", key.toString()});
+
+        assertTrue(out.toString().contains("ABC"));
     }
-    
-    // Error Handling Tests
-    
+
     @Test
-    @DisplayName("Should reject invalid file numbers")
-    void testInvalidFileNumber() {
-        // Test that file number 0 or negative returns error
-        String result = controller.getFileContentByNumber(0);
-        assertTrue(result.contains("Error"));
-    }
-    
-    @Test
-    @DisplayName("Should handle file number too large")
-    void testFileNumberTooLarge() {
-        // Test that file number beyond available files returns error
-        String result = controller.getFileContentByNumber(999);
-        assertTrue(result.contains("Error"));
-    }
-    
-    @Test
-    @DisplayName("Should handle file not found")
-    void testFileNotFound() {
-        // Test that missing file returns error message
+    @DisplayName("execute with missing cipher file should display error")
+    void testMissingCipherFile(@TempDir Path tempDir) throws Exception {
+
+        Path file = tempDir.resolve("file1.txt");
+        Files.writeString(file, "XYZ");
+
+        Filehandler f = new Filehandler(tempDir.toFile());
+        ProgramControl control = new ProgramControl(f);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        control.execute(new String[]{"01", "missing.txt"});
+
+        assertTrue(out.toString().contains("Unable to read or decipher"));
     }
 }
-
