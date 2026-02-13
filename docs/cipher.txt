@@ -1,0 +1,96 @@
+================================================================================
+CIPHER COMPONENT DOCUMENTATION
+================================================================================
+Component: Cipher (Team Member D)
+Version: 1.2
+Author: Marcus Southerland
+Date: 02/13/2026
+================================================================================
+
+1. OVERVIEW
+--------------------------------------------------------------------------------
+The Cipher component is the cryptographic engine of the application. It handles 
+the loading of substitution keys from external files and provides the logic 
+necessary to transform encrypted text back into readable plain text. It is 
+designed to be used primarily by the Program Controller (Team Member C).
+
+
+2. RESPONSIBILITIES
+--------------------------------------------------------------------------------
+* KEY LOADING & PARSING:
+  Reads two-line text files to establish a character mapping.
+  - Line 1: Plain text characters (Actual)
+  - Line 2: Cipher text characters (Key)
+
+* SMART PATH RESOLUTION: <--- (This is to simplify ease of use and testing) 
+  Automatically searches for key files in three priority locations:
+  1. Provided Absolute/Relative path
+  2. "ciphers/" directory
+  3. "src/main/java/ciphers/" directory
+
+* TEXT TRANSFORMATION:
+  Iterates through strings and replaces cipher characters with plain text 
+  equivalents using a HashMap for O(1) lookup efficiency.
+
+* FORMAT VALIDATION:
+  Enforces strict file integrity (checking for empty files, line counts, 
+  and matching character lengths).
+
+
+3. CLASS STRUCTURE & INTERFACE
+--------------------------------------------------------------------------------
+Class: Cipher
+
+- loadKey(String filename)
+  Returns: HashMap<Character, Character>
+  Throws: FileNotFoundException, IllegalArgumentException
+  
+- decipher(String text, HashMap<Character, Character> map)
+  Returns: String (Deciphered text)
+  Note: Returns null if input text is null.
+
+
+4. ERROR HANDLING STRATEGY (Verified by CipherTest.java)
+--------------------------------------------------------------------------------
+The component maps specific failure states to the following exceptions:
+
+CONDITION                   EXCEPTION                USER-FRIENDLY MESSAGE
+-------------------------   ----------------------   ---------------------------
+File does not exist         FileNotFoundException    (Standard System Error)
+File is 0 bytes             IllegalArgumentException "Error: File is empty."
+Missing second line         IllegalArgumentException "Error: File has only one line."
+Exceeds two lines           IllegalArgumentException "Error: File has more than two lines."
+Line length mismatch        IllegalArgumentException "Error: Lengths do not match."
+
+
+5. KEY DESIGN PRINCIPLES
+--------------------------------------------------------------------------------
+* CHARACTER PRESERVATION: 
+  Non-mapped characters (numbers, spaces, punctuation) are ignored by the 
+  cipher and passed directly to the output.
+  
+* ROBUST RESOURCE MANAGEMENT: 
+  Uses "try-with-resources" to ensure file scanners are closed immediately 
+  after use, even if a parsing error occurs.
+
+* PERFORMANCE: 
+  Utilizes StringBuilder for deciphering to avoid the overhead of String 
+  concatenation in loops.
+
+
+6. TEST SUITE SUMMARY (JUnit 5)
+--------------------------------------------------------------------------------
+* Functional Tests:
+  - testDecipherCorrectly: Verifies transformation and symbol preservation.
+  - testLoadKeyValid: Confirms correct mapping of Line 2 keys to Line 1 values.
+
+* Validation Tests:
+  - testLoadKeyFileNotFound
+  - testLoadKeyEmptyFile
+  - testLoadKeyOneLine
+  - testLoadKeyMoreThanTwoLines
+  - testLoadKeyMismatchedLengths
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
