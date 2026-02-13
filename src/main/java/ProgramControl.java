@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import ciphers.Cipher;
 
 public class ProgramControl {
 
@@ -13,7 +12,6 @@ public class ProgramControl {
 
     public void execute(String[] args) {
 
-        // No arguments → list files
         if (args.length == 0) {
             String[] files = filehandler.files();
 
@@ -25,17 +23,22 @@ public class ProgramControl {
 
         try {
             String fileNumber = args[0];
-
-            // Get file contents from Filehandler
             String content = filehandler.getFile(fileNumber);
 
-            // If a cipher key is provided
-            if (args.length == 2) {
-                String keyFile = args[1];
-                HashMap<Character, Character> map = cipher.loadKey(keyFile);
-                content = cipher.decipher(content, map);
+            HashMap<Character, Character> map;
+
+            if (args.length == 1) {
+                map = cipher.loadKey("key.txt"); // DEFAULT
+            }
+            else if (args.length == 2) {
+                map = cipher.loadKey(args[1]);   // CUSTOM
+            }
+            else {
+                System.out.println("Error: Invalid number of arguments.");
+                return;
             }
 
+            content = cipher.decipher(content, map);
             System.out.println(content);
 
         } catch (NumberFormatException e) {
@@ -47,3 +50,4 @@ public class ProgramControl {
         }
     }
 }
+

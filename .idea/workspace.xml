@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f13b158-ab10-4240-ba5b-f2487f335bb2" name="Changes" comment="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path).">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ProgramControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProgramControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProgramControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Userinterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Userinterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ProgramControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProgramControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CipherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CipherTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +162,7 @@
     <configuration name="TopSecret" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TopSecret" />
       <module name="TopSecret.main" />
+      <option name="PROGRAM_PARAMETERS" value="02" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -320,7 +320,7 @@
       <workItem from="1770988262969" duration="1597000" />
       <workItem from="1770995410813" duration="1040000" />
       <workItem from="1771010463122" duration="1389000" />
-      <workItem from="1771012004632" duration="2445000" />
+      <workItem from="1771012004632" duration="4473000" />
     </task>
     <task id="LOCAL-00001" summary="First CipherTest added.">
       <option name="closed" value="true" />
@@ -378,7 +378,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770749258108</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat: Implement Cipher class logic and substitution map&#10;&#10;- Implemented `Cipher` class using a HashMap for O(1) lookups (Substitution Cipher).&#10;- Added `loadKey(String filename)` to parse key files (Line 1=Plain, Line 2=Cipher).&#10;- Added `decipher(String text, HashMap map)` using StringBuilder for efficient string construction.&#10;- Started `TopSecret` main method logic to handle command line arguments (0, 1, or 2 args).&#10;- Added error handling for malformed key files and FileNotFoundException.&#10;&#10;TODO:&#10;- Implement file reading in `TopSecret` main (read args[0] content into a String).&#10;- Connect the read message string to `cipher.decipher()`.&#10;- output/print the final deciphered result.&#10;- Clarify/Implement `locateFile` logic (or replace with direct file path).">
+      <option name="closed" value="true" />
+      <created>1771014728661</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1771014728661</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
